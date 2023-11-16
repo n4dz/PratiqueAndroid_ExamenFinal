@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffc6c7"
+    tools:context=".ListerParCategorieActivity">
+
+    <TextView
+        android:id="@+id/categorieChoisit"
+        android:layout_width="226dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="44dp"
+        android:text="TextView"
+        android:textColor="#2d334a"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:fontFamily="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/categorieChoisit"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="111dp">
+
+        <TextView
+            android:id="@+id/titreImage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Image"
+            android:fontFamily="serif"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/titreNum"
+            android:layout_width="12dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Num."
+            android:fontFamily="serif"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/titreNom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Nom"
+            android:fontFamily="serif"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/titrePrenom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Prénom"
+            android:fontFamily="serif"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/titreTel"
+            android:layout_width="4dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:fontFamily="serif"
+            android:text="Téléphone"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/liste_film_categorie"
+        android:layout_width="410dp"
+        android:layout_height="403dp"
+        android:layout_marginTop="16dp"
+        android:background="#fffffe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <Button
+        android:id="@+id/retourCategorie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/turquoise"
+        app:icon="@drawable/backward_icon"
+        app:iconSize="30dp"
+        app:iconTint="@color/darkBlue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/liste_film_categorie" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
