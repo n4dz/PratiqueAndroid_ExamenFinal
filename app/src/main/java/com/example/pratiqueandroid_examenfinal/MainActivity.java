@@ -25,7 +25,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<Film> listeFilms;
+    private ArrayList<Contacts> listeContacts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         try {
             DatabaseHelper myDB = new DatabaseHelper(MainActivity.this);
-            listeFilms = myDB.listerFilm();
+            listeContacts = myDB.listerContacts();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void ajouter(){
         Intent intent = new Intent(MainActivity.this, AjouterActivity.class);
-        intent.putExtra("listeFilms", listeFilms);
+        intent.putExtra("listeFilms", listeContacts);
         AjouterActivityResultLaucher.launch(intent);
     }
 
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                         // There are no request codes
                         Intent donnees = result.getData();
                         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-                            listeFilms = donnees.getParcelableArrayListExtra("listeFilms",Film.class);
+                            listeContacts = donnees.getParcelableArrayListExtra("listeFilms",Contacts.class);
                         }
                         // On affiche la donnée envoyé par activité 2
                         lister();
@@ -146,14 +146,14 @@ public class MainActivity extends AppCompatActivity {
     private void supprimer(){
         TextView aSupprimer = findViewById(R.id.NumSupp);
         int id = parseInt(aSupprimer.getText().toString());
-        Film trouver=null;
-        for (Film unFilm : listeFilms){
-            if (unFilm.getNum() == id) {
+        Contacts trouver=null;
+        for (Contacts unFilm : listeContacts){
+            if (unFilm.getNumero() == id) {
                 trouver = unFilm;
             }
         }
         if (trouver!=null) {
-            listeFilms.remove(trouver);
+            listeContacts.remove(trouver);
             DatabaseHelper myDB = new DatabaseHelper(MainActivity.this);
             myDB.supprimerFilm(id);
             Toast.makeText(this, "Film supprimé." ,Toast.LENGTH_SHORT).show();
@@ -173,8 +173,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void lister(){
-        RecyclerView recyclerView = findViewById(R.id.listeFilm);
-        Film_RecyclerViewAdapter adapter = new Film_RecyclerViewAdapter(this,listeFilms);
+        RecyclerView recyclerView = findViewById(R.id.listeContacts);
+        Film_RecyclerViewAdapter adapter = new Film_RecyclerViewAdapter(this,listeContacts);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void listerCatégorie(String categorire){
         Intent intent = new Intent(MainActivity.this, ListerParCategorieActivity.class);
-        intent.putExtra("listeFilms", listeFilms);
+        intent.putExtra("listeContacts", listeContacts);
         intent.putExtra("categorie", categorire);
         ListerParCategorieActivityResultLaucher.launch(intent);
     }
